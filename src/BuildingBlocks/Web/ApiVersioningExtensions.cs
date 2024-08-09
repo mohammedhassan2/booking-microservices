@@ -1,7 +1,7 @@
-﻿using Asp.Versioning;
+namespace BuildingBlocks.Web;
+using Asp.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BuildingBlocks.Web;
 
 public static class ApiVersioningExtensions
 {

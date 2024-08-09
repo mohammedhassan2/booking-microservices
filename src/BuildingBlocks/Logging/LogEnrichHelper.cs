@@ -1,8 +1,8 @@
-﻿using System.Security.Claims;
+namespace BuildingBlocks.Logging;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 
-namespace BuildingBlocks.Logging;
 
 public static class LogEnrichHelper
 {
@@ -17,7 +17,7 @@ public static class LogEnrichHelper
         diagnosticContext.Set("Scheme", request.Scheme);
 
         // Only set it if available. You're not sending sensitive data in a querystring right?!
-        if(request.QueryString.HasValue)
+        if (request.QueryString.HasValue)
         {
             diagnosticContext.Set("QueryString", request.QueryString.Value);
         }

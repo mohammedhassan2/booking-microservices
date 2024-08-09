@@ -1,24 +1,26 @@
-﻿using Asp.Versioning;
+namespace BuildingBlocks.Web;
+
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace BuildingBlocks.Web;
-
 using MapsterMapper;
 
-[Route(BaseApiPath)]
 [ApiController]
+[Route(BaseApiPath)]
 [ApiVersion("1.0")]
 public abstract class BaseController : ControllerBase
 {
     protected const string BaseApiPath = "api/v{version:apiVersion}";
-    private IMapper _mapper;
 
     private IMediator _mediator;
+    private IMapper _mapper;
 
+    // Lazy initialization of IMediator
     protected IMediator Mediator =>
-        _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+        _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
 
-    protected IMapper Mapper => _mapper ??= HttpContext.RequestServices.GetService<IMapper>();
+    // Lazy initialization of IMapper
+    protected IMapper Mapper =>
+        _mapper ??= HttpContext.RequestServices.GetRequiredService<IMapper>();
 }

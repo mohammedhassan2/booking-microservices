@@ -1,8 +1,7 @@
+namespace BuildingBlocks.Exception;
+
 using Grpc.Core;
 using Grpc.Core.Interceptors;
-using Microsoft.Extensions.Logging;
-
-namespace BuildingBlocks.Exception;
 
 public class GrpcExceptionInterceptor : Interceptor
 {
