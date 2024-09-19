@@ -1,4 +1,4 @@
-﻿using EasyCaching.Core;
+using EasyCaching.Core;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -41,7 +41,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
                              DateTime.Now.AddHours(defaultCacheExpirationInHours);
 
         await _cachingProvider.SetAsync(cacheKey, response, expirationTime.TimeOfDay);
-
+    
         _logger.LogDebug("Caching response for {TRequest} with cache key: {CacheKey}", typeof(TRequest).FullName,
             cacheKey);
 
